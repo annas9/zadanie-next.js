@@ -46,12 +46,15 @@ export const CharactersList = ({ characters }: CharactersListProps) => {
             onChange={(e) => setName(e.target.value)}
             type="text"
             placeholder="Szukaj..."
+            data-test-id="search"
           />
-          <SearchButton type="submit">Szukaj</SearchButton>
+          <SearchButton type="submit" data-test-id="search-submit">
+            Szukaj
+          </SearchButton>
         </form>
         {results.map((character) => (
           <Link key={character.id} href={`characters/${character.id}`}>
-            <UserBox>
+            <UserBox data-test-id="character-list-item">
               <Avatar src={character.image} />
               {character.name}
             </UserBox>
