@@ -3,10 +3,12 @@ import {
   UserBox,
   Wrapper,
   Input,
+  Avatar,
 } from '@/components/Characters/List/styles';
 import { Pagination } from '@/components/Pagination';
 import { useRouter } from 'next/router';
 import { Characters } from '@/pages/interfaces';
+import Link from 'next/link';
 
 interface CharactersListProps {
   characters: Characters;
@@ -28,7 +30,12 @@ export const CharactersList = ({ characters }: CharactersListProps) => {
       <Box>
         <Input type="text" placeholder="Szukaj..." />
         {results.map((character) => (
-          <UserBox key={character.id}>{character.name}</UserBox>
+          <Link key={character.id} href={`characters/${character.id}`}>
+            <UserBox>
+              <Avatar src={character.image} />
+              {character.name}
+            </UserBox>
+          </Link>
         ))}
         <Pagination
           next={next}

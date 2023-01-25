@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import { gql } from '@apollo/client';
 import client from './apollo-client';
 import { CharactersList } from '@/components/Characters/List';
 import { useRouter } from 'next/router';
 import { Characters } from '@/pages/interfaces';
+import getCharacters from '@/pages/getCharacters';
 
 interface ServerSideProps {
   query: {
@@ -16,22 +16,13 @@ export async function getServerSideProps({ query }: ServerSideProps) {
   const {
     data: { characters },
   } = await client.query({
-    query: gql`
-      query GetCharacters {
-        characters(page: ${query?.page || 1}) {
-          info {
-            next
-            pages
-            prev
-          }
-          results {
-            id
-            name
-            image
-          }
-        }
-      }
-    `,
+    query: getCharacters,
+    variables: {
+      filter: {
+        name: null,
+      },
+      page: Number(query?.page) || 1,
+    },
   });
 
   return {

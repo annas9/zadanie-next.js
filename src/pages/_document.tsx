@@ -1,6 +1,7 @@
 import Document, {
   Head,
   Main,
+  Html,
   NextScript,
   DocumentContext,
   DocumentInitialProps,
@@ -15,13 +16,13 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <Html>
         <Head />
         <body>
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

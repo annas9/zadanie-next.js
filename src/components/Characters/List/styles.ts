@@ -16,6 +16,18 @@ export const Box = styled.div`
   padding: 16px;
   background: #fff;
   box-shadow: 0 8px 10px -5px rgba(106, 106, 121, 1);
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+`;
+
+export const Avatar = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 12px;
 `;
 
 export const UserBox = styled.div`
