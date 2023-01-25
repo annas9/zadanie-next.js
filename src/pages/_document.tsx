@@ -1,13 +1,27 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import Document, {
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from 'next/document';
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
+export default class MyDocument extends Document {
+  static async getInitialProps({
+    renderPage,
+  }: DocumentContext): Promise<DocumentInitialProps> {
+    return renderPage();
+  }
+
+  render() {
+    return (
+      <html>
+        <Head />
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    );
+  }
 }
