@@ -46,6 +46,17 @@ export const UserBox = styled.div`
   }
 `;
 
+export const SearchButton = styled.button`
+  background: #4f46e5;
+  color: #fff;
+  display: inline-block;
+  border-radius: 4px;
+  margin-left: 16px;
+  border: none;
+  padding: 8px 14px;
+  cursor: pointer;
+`;
+
 export const Input = styled.input`
   font-size: 12px;
   color: #6d6b6b;

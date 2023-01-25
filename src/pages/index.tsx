@@ -19,7 +19,7 @@ export async function getServerSideProps({ query }: ServerSideProps) {
     query: getCharacters,
     variables: {
       filter: {
-        name: null,
+        name: query?.name || null,
       },
       page: Number(query?.page) || 1,
     },
