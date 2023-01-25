@@ -10,7 +10,7 @@ import { Pagination } from '@/components/Pagination';
 import { useRouter } from 'next/router';
 import { Characters } from '@/pages/interfaces';
 import Link from 'next/link';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 interface CharactersListProps {
   characters: Characters;
@@ -28,9 +28,8 @@ export const CharactersList = ({ characters }: CharactersListProps) => {
     router.push(router);
   };
 
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const name = e.target.name.value;
     router.query.page = '1';
     router.query.name = name;
     router.push(router);
