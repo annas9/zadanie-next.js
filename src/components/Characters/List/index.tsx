@@ -15,24 +15,31 @@ import { FormEvent, useState } from 'react';
 interface CharactersListProps {
   characters: Characters;
 }
+
 export const CharactersList = ({ characters }: CharactersListProps) => {
   const router = useRouter();
-  const [name, setName] = useState(router?.query?.name);
+  const [name, setName] = useState(router?.query?.name || '');
   const {
     results,
     info: { next, pages, prev },
   } = characters;
 
   const handlePageClick = (pageId: number) => {
-    router.query.page = pageId.toString();
-    router.push(router);
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: pageId.toString() },
+    });
   };
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.query.page = '1';
-    router.query.name = name;
-    router.push(router);
+    if (name.length > 0) {
+      router.push({
+        pathname: router.pathname,
+        query: { ...router.query, page: '1', name },
+      });
+    }
+    router.replace(router.pathname);
   };
 
   return (
@@ -55,7 +62,7 @@ export const CharactersList = ({ characters }: CharactersListProps) => {
           <Link key={character.id} href={`characters/${character.id}`}>
             <UserBox data-test-id="character-list-item">
               <Avatar src={character.image} />
-              {character.name}
+              <div data-test-id="character-name">{character.name}</div>
             </UserBox>
           </Link>
         ))}

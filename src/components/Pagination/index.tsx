@@ -50,7 +50,7 @@ export const Pagination = ({
           {showStartDots && (
             <>
               <PageItem onClick={() => handlePageClick(1)}>1</PageItem>
-              <Dots>...</Dots>
+              {currentPage >= 6 && <Dots>...</Dots>}
             </>
           )}
           {allPages.map((page) => (

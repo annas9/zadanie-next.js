@@ -8,5 +8,9 @@ export const GoBackButton = () => {
     router.back();
   };
 
-  return <BackButton onClick={handleClick}>{'<'}</BackButton>;
+  return (
+    <BackButton onClick={handleClick} data-test-id="go-back-button">
+      {'<'}
+    </BackButton>
+  );
 };

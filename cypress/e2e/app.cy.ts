@@ -7,6 +7,18 @@ describe('Characters', () => {
     cy.url().should('include', 'page=1');
     cy.get('[data-test-id="character-list-item"]').contains('Morty');
   });
+
+  it('s', () => {
+    cy.visit('http://localhost:3000/');
+    const first = cy
+      .get('[data-test-id="character-name"]')
+      .first()
+      .should(($name) => {
+        const val = $name.val();
+        console.log(val);
+        expect(val).to.match(/foo/);
+      });
+  });
 });
 
 export {};
